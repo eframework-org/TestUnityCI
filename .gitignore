@@ -1,0 +1,16 @@
+/Library
+/Temp
+/obj
+*.csproj
+*.sln
+/.vs
+/UserSettings
+/Logs
+/Local
+/Builds
+/Assets/Temp
+/Assets/Temp.meta
+/Assets/InitTestScene*
+/node_modules
+/package-lock.md5
+/Packages/packages-lock.md5
