@@ -11,13 +11,13 @@ permissions:
 
 jobs:
   testAllModes:
-    name: Test in ${{ matrix.testMode }}
-    runs-on: ubuntu-latest
+    name: Test in ${{ matrix.testMode }} on ${{ matrix.os }}
+    runs-on: ${{ matrix.os }}
     strategy:
       fail-fast: false
       matrix:
-        testMode:
-          - playmode
+        os: [ubuntu-latest, windows-latest, macos-latest]
+        testMode: [playmode]
     steps:
       - uses: actions/checkout@v4
         with:
@@ -25,8 +25,10 @@ jobs:
       - uses: actions/cache@v3
         with:
           path: ${{ matrix.projectPath }}/Library
-          key: Library-${{ matrix.projectPath }}
+          key: Library-${{ matrix.projectPath }}-${{ matrix.os }}
           restore-keys: |
+            Library-${{ matrix.projectPath }}-${{ matrix.os }}-
+            Library-${{ matrix.projectPath }}-
             Library-
       - uses: game-ci/unity-test-runner@v4
         id: tests
@@ -39,15 +41,15 @@ jobs:
           testMode: ${{ matrix.testMode }}
           artifactsPath: ${{ matrix.testMode }}-artifacts
           githubToken: ${{ secrets.GITHUB_TOKEN }}
-          checkName: ${{ matrix.testMode }} Test Results
+          checkName: ${{ matrix.testMode }} Test Results (${{ matrix.os }})
           coverageOptions: 'generateAdditionalMetrics;generateHtmlReport;generateBadgeReport;assemblyFilters:+my.assembly.*'
       - uses: actions/upload-artifact@v4
         if: always()
         with:
-          name: Test results for ${{ matrix.testMode }}
+          name: Test results for ${{ matrix.testMode }} on ${{ matrix.os }}
           path: ${{ steps.tests.outputs.artifactsPath }}
       - uses: actions/upload-artifact@v4
         if: always()
         with:
-          name: Coverage results for ${{ matrix.testMode }}
+          name: Coverage results for ${{ matrix.testMode }} on ${{ matrix.os }}
           path: ${{ steps.tests.outputs.coveragePath }}
