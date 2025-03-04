@@ -3,6 +3,12 @@ name: 单元测试
 on:
   workflow_dispatch:
 
+permissions:
+  checks: write
+  contents: read
+  actions: read
+  security-events: write
+
 jobs:
   testAllModes:
     name: Test in ${{ matrix.testMode }}
