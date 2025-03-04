@@ -16,6 +16,8 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
+        projectPath:
+          - Samples~
         testMode: [playmode]
     steps:
       - uses: actions/checkout@v4
