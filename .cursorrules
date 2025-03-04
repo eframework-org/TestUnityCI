@@ -1,0 +1,148 @@
+# Cursor Rules 配置文件
+# 此文件定义了项目的编辑器行为和代码规范
+
+# 语言设置
+language: "中文"                    # 设置 AI 助手使用中文交流
+locale: "zh-CN"                    # 设置本地化为中文
+
+# 代码风格
+tab_size: 4                        # 缩进使用 4 空格
+insert_final_newline: true         # 文件末尾添加空行
+trim_trailing_whitespace: true     # 删除行尾空格
+
+# 文件编码
+charset: "utf-8"                   # 使用 UTF-8 编码
+
+# 文件类型关联
+file_types:
+  "*.cs": "csharp"                # C# 源文件
+  "*.md": "markdown"              # Markdown 文档
+  "*.json": "json"                # JSON 配置文件
+  "*.asmdef": "json"              # Unity 程序集定义
+  "*.meta": "yaml"                # Unity 元数据
+  "*.unity": "yaml"               # Unity 场景文件
+  "*.prefab": "yaml"              # Unity 预制体
+  "*.mat": "yaml"                 # Unity 材质
+  "*.asset": "yaml"               # Unity 资源
+  "*.anim": "yaml"                # Unity 动画
+
+# 目录规范
+directories:
+  structure:
+    ".github/workflows": "工作流配置"
+    "Runtime/Scripts": "运行时脚本"
+    "Runtime/Resources": "运行时资源"
+    "Editor/Scripts": "编辑器脚本"
+    "Editor/Resources": "编辑器资源"
+    "Samples~": "示例目录"
+    "Documentation~": "文档目录"
+
+# 命名规范
+naming:
+  directories:
+    module: "PascalCase"           # 模块目录使用大驼峰
+    special: "lowercase"           # 专有目录使用小写
+  files:
+    source: "PascalCase"           # 源码文件使用大驼峰
+    test: "PascalCase.Test"        # 测试文件使用大驼峰加.Test
+    special: "UPPERCASE"           # 专有文件使用大写
+  code:
+    namespace: "UPPER"             # 命名空间使用大写
+    class: "PascalCase"            # 类名使用大驼峰
+    interface: "IPascalCase"       # 接口使用I前缀加大驼峰
+    method: "PascalCase"           # 方法使用大驼峰
+    property: "PascalCase"         # 属性使用大驼峰
+    field: "camelCase"            # 字段使用小驼峰
+    constant: "PascalCase"         # 常量使用大驼峰
+    parameter: "camelCase"         # 参数使用小驼峰
+    local: "camelCase"            # 局部变量使用小驼峰
+
+# AI 助手设置
+ai_assistant:
+  language: "中文"                  # AI 助手使用中文
+  code_style: "标准"               # 使用标准代码风格
+  comment_style: "中文"            # 注释使用中文
+  documentation: "中文"            # 文档使用中文
+
+# 代码提示
+code_suggestions:
+  enabled: true                    # 启用代码提示
+  language: "中文"                 # 提示使用中文
+
+# 代码检查
+linting:
+  enabled: true                    # 启用代码检查
+  csharp:
+    style_cop: true               # 使用 StyleCop 检查
+    roslyn_analyzers: true        # 使用 Roslyn 分析器
+    unity_analyzers: true         # 使用 Unity 分析器
+
+# 自动完成
+autocomplete:
+  enabled: true                    # 启用自动完成
+  snippets: true                   # 启用代码片段
+  language: "中文"                 # 提示使用中文
+
+# 格式化
+formatting:
+  on_save: true                    # 保存时自动格式化
+  rules:
+    max_line_length: 120          # 最大行长度
+    indent_style: "space"         # 使用空格缩进
+    indent_size: 4                # 缩进大小为 4
+    empty_lines:
+      between_classes: 1          # 类之间空一行
+      between_methods: 1          # 方法之间空一行
+      after_copyright: 1          # 版权声明后空一行
+      end_of_file: 1             # 文件末尾空一行
+      after_using: 1             # using 语句后空一行
+      after_namespace: 1          # 命名空间声明后空一行
+
+# 文档生成
+documentation:
+  language: "中文"                 # 文档使用中文
+  auto_generate: true             # 自动生成文档注释
+  style: "xml"                    # 使用 XML 文档注释
+  markdown:
+    titles: "atx"                # 标题使用 ATX 风格（#）
+    lists: "-"                   # 列表使用短横线
+    code_blocks: "```"           # 代码块使用三个反引号
+    links:
+      internal: "relative"       # 内部链接使用相对路径
+      external: "full_url"       # 外部链接使用完整 URL
+    anchors: "lowercase-hyphen"  # 锚点使用小写连字符
+
+# 版本控制
+version_control:
+  commit_message_language: "中文"   # 提交信息使用中文
+  branch_naming:
+    feature: "feature/*"          # 功能分支
+    fix: "fix/*"                 # 修复分支
+    optimize: "optimize/*"        # 优化分支
+  commit_format:
+    type:
+      - "feat: 新功能"
+      - "fix: 修复问题"
+      - "docs: 文档更新"
+      - "style: 代码格式"
+      - "refactor: 代码重构"
+      - "perf: 性能优化"
+      - "test: 测试相关"
+      - "chore: 构建相关"
+
+# 测试规范
+testing:
+  required: true                  # 必须包含测试
+  coverage:
+    minimum: 80                   # 最低覆盖率要求
+  naming:
+    test_files: "*.Test.cs"      # 测试文件命名
+    test_classes: "Test*"        # 测试类命名
+    test_methods: "*"            # 测试方法命名（简化，不需要Test前缀）
+  attributes:
+    test_class: "internal class" # 测试类访问级别
+    test_method: "[Test]"        # 普通测试方法特性
+    unity_test: "[UnityTest]"    # Unity 测试方法特性
+  conditional_compilation:
+    enabled: true                # 启用条件编译
+    symbol: "UNITY_INCLUDE_TESTS" # 测试条件编译符号
